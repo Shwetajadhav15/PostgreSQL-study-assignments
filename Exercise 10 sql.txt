@@ -1,0 +1,27 @@
+Question:
+
+The "rental" table has fields for rental_date( when the movie was rented), and return_date (when it was returned).
+We want to reach out to customers whose rental duration was 7 or more days, and send them an email. 
+Can you create a report for me that lists down following columns:
+• Rental date
+• Return date
+• Rent duration - that is difference between two dates (HINT: Use AGE function)
+• Customer first name
+• Customer last name
+• Customer email
+
+You can find the last 3 fields in the "customer" table.
+
+Keep the date sorted by rent duration (high to low) so we can see the longest renters first.
+
+Ans:
+select rental.rental_date, rental.return_date, age(return_date, rental_date) as "Rent duration", 
+customer.first_name, customer.last_name, customer.email from rental
+inner join customer
+on rental.rental_id = customer.customer_id
+where age(return_date, rental_date) >= interval '7 days'
+order by "Rent duration" desc ;
+
+Fields -> rental.rental_date, rental.return_date, customer.first_name, customer.last_name, customer.email
+
+Tables -> rental , customer

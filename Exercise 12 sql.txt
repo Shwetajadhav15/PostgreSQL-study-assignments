@@ -1,0 +1,28 @@
+Question:
+The "payment" table contains purchases done by each customer. This table has the column "customer_id" which
+contains unique id of each customer and can be used to join on the the "customer" table to get each customers
+first/last name and email address. I want to create a report that shows following columns:
+• Customer name - combination of first and last name
+• Email - email address of customer
+• Total rental - total purchase done by the customer
+• Customer Category based on following rules (HINT : USE "CASE")
+  • 'Elite' - Total rentals more than $200
+  • 'Platinum' - Total rentals more than $150
+  • 'Gold' - Total rentals more than $100
+  • 'Silver' - Total rentals more than $0
+  create a view for this.
+
+Ans:
+
+Create view new_view as
+SELECT Concat(customer.first_name,' ',customer.last_name) As "Customer Name", email As "Email", Sum(amount) As "Total Rentals", 
+CASE
+    WHEN sum(amount) >= 200 THEN 'Elite'
+	WHEN sum(amount) >= 150 AND sum(amount) < 200 THEN 'Platinum'
+	WHEN sum(amount) >= 100 AND sum(amount) < 150 THEN 'Gold'
+	WHEN sum(amount) >= 0 AND sum(amount) <100 THEN 'Silver'
+END
+FROM payment
+inner join customer
+on payment.customer_id = customer.customer_id
+group by "Customer Name", "Email";

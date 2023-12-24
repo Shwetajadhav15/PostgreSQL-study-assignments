@@ -1,0 +1,12 @@
+QUESTION:
+For the "order_details" table created in previous coding exercise(Exercise 13 sql), make the following changes:
+a. Change name of column "customer_name" to "customer_first_name"
+b. Add a new column for "cancel_date"
+
+Ans:
+
+SELECT * FROM order_details;
+
+Alter table order_details Rename column customer_name to customer_first_name;
+
+ALTER TABLE order_details ADD COLUMN cancel_date date;

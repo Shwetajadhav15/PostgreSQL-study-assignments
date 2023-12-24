@@ -1,0 +1,15 @@
+Question:
+
+Which are my top 5 highest renting customers? How much they have spent?
+
+Hints:
+- Use the "payment" table
+- How much they have spent? => this is the aggregation (SUM) of amount
+
+Ans:
+SELECT customer_id, sum(amount) FROM payment 
+group by customer_id 
+order by sum(amount) desc 
+limit 5;
+
+Fileds -> customer_id, amount 

@@ -1,0 +1,15 @@
+Question:
+
+I want a list of all movies that either have the rating 'G' OR 'PG'.
+
+The movies must be longer than 120 minutes in length, and they should have the word 'Action'
+anywhere in the description.
+
+
+Ans:
+
+SELECT title, description, length, rating FROM film 
+where rating in('G','PG') and length>120 and description like '%Action%';
+
+Fields -> title, rating, description, length
+Criteria -> rating in('G','PG') , length >120 , description like '%Action%'

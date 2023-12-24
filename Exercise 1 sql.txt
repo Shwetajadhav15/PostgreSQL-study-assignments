@@ -1,0 +1,11 @@
+Question:
+
+The "payment" table stores customer ids and amount they have paid. I want to get the list of customer ids that have rented out movies that cost 7.99 or more so I can put them in a "platinum" category and send them coupons later.
+
+Can you give me a report containing that ?
+
+Ans:
+Select distinct customer_id from payment where amount>=7.99;
+
+Field -> customer_id
+Criteria -> amount >=7.99

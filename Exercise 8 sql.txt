@@ -1,0 +1,31 @@
+Question:
+
+I want to create a report that shows the different ratings of all movies and count of movies that have
+been rented for each rating.
+
+The film_id and ratings are available under "film" table. The "rental" table shows each film that is 
+rented,but it does not have film_id as a column, so you would have to find a 3rd table that can get 
+you that info.
+
+Ans:
+
+SELECT film.rating, count(film.rental_rate) FROM film
+inner join inventory
+on film.film_id = inventory.film_id
+inner join rental
+on rental.inventory_id = inventory.inventory_id
+group by film.rating
+order by count(film.rental_rate) desc;
+
+
+Checklist:
+Step 1: What is the information you want ?
+Fields -> film.rating, number of time they were rented 
+
+Step 2: Which tables to join ?
+Tables join -> film, rental, inventory
+
+Step 3: Which common field to use to join?
+Commom columns/fields -> film.film_id = inventory.film_id
+                         rental.inventory_id = inventory.inventory_id
+						 
